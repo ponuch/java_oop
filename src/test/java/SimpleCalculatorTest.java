@@ -8,16 +8,6 @@ public class SimpleCalculatorTest {
 
     private final BaseCalculator calculator = new SimpleCalculator();
 
-    @BeforeAll
-    static void setup(){
-        System.out.println("@BeforeAll executed");
-    }
-
-    @BeforeEach
-    void setupThis(){
-        System.out.println("@BeforeEach executed");
-    }
-
     @Test
     void testCalcAddSuccess()
     {
@@ -50,14 +40,36 @@ public class SimpleCalculatorTest {
                 calculator.calculate(new OperationData(36, 4, OperationType.DIV)).result());
     }
 
-    @AfterEach
-    void tearThis(){
-        System.out.println("@AfterEach executed");
+    @Test
+    void testCalcAddFail()
+    {
+        System.out.println("======TEST ADD FAIL EXECUTED=======");
+        Assertions.assertNotEquals( 5.0 ,
+                calculator.calculate(new OperationData(2, 2, OperationType.ADD)).result());
     }
 
-    @AfterAll
-    static void tear(){
-        System.out.println("@AfterAll executed");
+    @Test
+    void testCalcSubFail()
+    {
+        System.out.println("======TEST SUB FAIL EXECUTED=======");
+        Assertions.assertNotEquals( 5.0 ,
+                calculator.calculate(new OperationData(8, 2, OperationType.SUB)).result());
+    }
+
+    @Test
+    void testCalcMulFail()
+    {
+        System.out.println("======TEST MUL EXECUTED=======");
+        Assertions.assertNotEquals( 35.0 ,
+                calculator.calculate(new OperationData(9, 4, OperationType.MUL)).result());
+    }
+
+    @Test
+    void testCalcDivFail()
+    {
+        System.out.println("======TEST DIV EXECUTED=======");
+        Assertions.assertNotEquals( 8.0 ,
+                calculator.calculate(new OperationData(36, 4, OperationType.DIV)).result());
     }
 }
 
